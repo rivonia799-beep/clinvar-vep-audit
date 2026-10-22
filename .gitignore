@@ -1,0 +1,9 @@
+# .gitignore
+__pycache__/
+*.pyc
+_old/
+_scratch/
+*.npz
+*.log
+.vscode/
+.idea/
