@@ -1,0 +1,9 @@
+_old/
+__pycache__/
+*.pyc
+*.npz
+.git/
+.vscode/
+.idea/
+data/clinvar_all.tsv
+data/clinvar_all.tsv.gz

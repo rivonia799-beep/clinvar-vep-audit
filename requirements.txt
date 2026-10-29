@@ -1,11 +1,11 @@
-# Core dependencies for evaluate.py / make_figs.py / make_report.py
+# Core dependencies for evaluate.py / build*.py
 numpy>=1.24
 
-# Optional -- only needed for carbon_probe.py (Carbon-500M linear probe)
+# Optional -- only needed for carbon_probe.py
 # torch>=2.0
 # transformers>=4.40
 
-# Optional -- only needed for make_report.py (PDF/DOCX generation)
+# Optional -- only needed for make_report.py (PDF/DOCX)
 # python-docx>=1.1
 # reportlab>=4.0
 # Pillow>=10.0
