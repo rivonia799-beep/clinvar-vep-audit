@@ -197,6 +197,31 @@ The frozen copy is what makes the results reproducible.
 
 ---
 
+## Leakage audit
+
+Two checks were run on the chromosome-wise split.
+
+**1. Nearest-neighbour similarity.** Using L2-normalised 4-mer frequency
+vectors (256-d), each test sequence was matched to its most similar
+training sequence.
+
+| Quantity | Cosine similarity |
+|---|---|
+| Random test–train pairs (mean) | 0.408 |
+| Nearest neighbour (mean) | 0.698 |
+| Nearest neighbour (max) | 0.896 |
+| Pairs ≥ 0.95 | **0** |
+
+Nearest neighbours are clearly closer than random pairs (+0.29), but no
+near-duplicates exist (max 0.896).
+
+**2. Gene overlap.** Chromosome-wise splitting also separates genes:
+the training set contains 1,682 genes and the test set 878, with **zero
+overlap**. A model therefore cannot exploit memorised gene identity;
+it has to rely on sequence-level effects.
+
+---
+
 ## Terminology note
 
 The plain-language terms used during development are mapped to reporting terms here:
