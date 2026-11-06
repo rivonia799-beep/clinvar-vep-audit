@@ -57,7 +57,7 @@ ClinVar variant_summary (GRCh38)
 
 ## 4. Result
 
-**Finding 1 — contamination.** 36.0% of positives are stop-gain/frameshift vs 0.0% of
+**Finding 1 — contamination.** 36.0% of positives are stop-gain/nonsense variants vs 0.0% of
 negatives. A consequence-rule baseline using **no sequence features** reaches AUPRC 0.4925,
 above the trained 4-mer model (0.2388).
 

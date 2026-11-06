@@ -9,6 +9,15 @@
 industrial benchmark. The dataset is small (6,000 variants) and the pipeline is deliberately
 lightweight. The contribution is the finding and the attribution, not the scale.
 
+**For AI4Science / DNA sequence modeling roles:** see
+[`AI4SCIENCE_PORTFOLIO.md`](AI4SCIENCE_PORTFOLIO.md) for a concise project summary,
+the relevant code paths, and an explicit statement of what this repository does and does not
+claim.
+
+At a glance, this repository demonstrates fixed-window DNA sequence representation, 4-mer and
+frozen Carbon-500M probes, chromosome-wise evaluation, AUROC/AUPRC metric control, and a
+Docker-reproducible data pipeline.
+
 | Task stratification vs. model scale | A consequence rule outperforms a DNA LM |
 |---|---|
 | ![fig A](fig_A_auroc.png) | ![fig B](fig_B_consequence_rule.png) |
@@ -35,7 +44,7 @@ Why this matters:
   **premature stop codon**. The reported 36.0% are therefore nonsense/stop-gained variants.
 - Such a variant's label is determined **entirely by its protein-level consequence**.
 - Model inputs are **fixed-length windows of naked genomic sequence**, without transcript
-  structure or CDS reading-frame phase. The frameshift/stop consequence is therefore
+  structure or CDS reading-frame phase. The premature-stop/transcript consequence is therefore
   **not recoverable from the input**.
 - Such variants are also **trivially separable by consequence annotation** (VEP / SnpEff).
   Mixing them into the test set means the benchmark **no longer measures regulatory
@@ -252,9 +261,9 @@ The task subsets, negative-sampling procedures and evaluated models all differ.
 量化「按分子后果分层任务」与「扩大模型规模」各自对指标的贡献。
 
 **三个结论**
-1. **未分层集存在蛋白层面后果污染**：正例中 36.0% 为截断/移码变异，负例中为 0.0%。
-   这类变异的标签由蛋白后果决定，而模型输入是固定长度的裸基因组窗口（不含转录本结构
-   与 CDS 阅读框相位），无法推算移码后果。**一条不依赖任何序列特征的后果规则基线即可达到
+1. **未分层集存在蛋白层面后果污染**：正例中 36.0% 为无义/终止获得（nonsense/stop-gained）变异，
+   负例中为 0.0%。这类变异的标签由蛋白后果决定，而模型输入是固定长度的裸基因组窗口
+   （不含转录本结构与 CDS 阅读框相位），无法推算提前终止后果。**一条不依赖任何序列特征的后果规则基线即可达到
    AUPRC 0.493，高于训练过的 4-mer 模型（0.239）。**
 2. **任务分层的贡献大于模型规模**：同模型下分层带来 +0.144 AUROC；
    同任务下把 4-mer 换成 500M 参数 DNA 语言模型只带来 +0.043，
